@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="XFCarouselPractice.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:local="clr-namespace:XFCarouselPractice"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <!--<CollectionView ItemsSource="{Binding PageIndice}">
+        <CollectionView.Resources>
+            <DataTemplate x:Key="FirstPageTemplate">
+                <Grid HeightRequest="{Binding ScreenHeight}" WidthRequest="{Binding ScreenWidth}">
+                    <CollectionView>
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout>
+
+                            </LinearItemsLayout>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Grid>
+            </DataTemplate>
+        </CollectionView.Resources>
+    </CollectionView>-->
+
+    <ContentPage.Resources>
+
+        <!--  First Template  -->
+        <DataTemplate x:Key="firstTemplate">
+            <ViewCell>
+                <Grid>
+                    <Label FontSize="Title" Text="FirstTemplate!" />
+                    <Image
+                        HeightRequest="50"
+                        Source="myIcon"
+                        WidthRequest="50" />
+                    <Label
+                        FontSize="Large"
+                        HorizontalOptions="End"
+                        Text="{Binding TemplateId}" />
+                </Grid>
+            </ViewCell>
+        </DataTemplate>
+
+        <!--  Second Template  -->
+        <DataTemplate x:Key="secondTemplate">
+            <ViewCell>
+                <StackLayout>
+                    <Label
+                        FontSize="Large"
+                        Text="SecondTemplate!"
+                        TextColor="Red" />
+                    <CheckBox />
+                    <Label FontSize="Large" Text="{Binding TemplateId}" />
+                </StackLayout>
+            </ViewCell>
+        </DataTemplate>
+
+        <local:MyDataTemplateSelector
+            x:Key="myDataTemplateSelector"
+            FirstTemplate="{StaticResource firstTemplate}"
+            SecondTemplate="{StaticResource secondTemplate}" />
+
+    </ContentPage.Resources>
+
+    <ListView
+        HasUnevenRows="True"
+        ItemTemplate="{StaticResource myDataTemplateSelector}"
+        ItemsSource="{Binding ItemList}" />
+
+
+</ContentPage>
